@@ -1,0 +1,102 @@
+<script type="text/javascript">
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+</script>
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Student Details <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    
+    <li><a href="#" data-toggle="modal" data-target="#exampleModal">Add Student Details</a></li>
+    <li><a  (click)="showDetail()">View All Student Details</a></li>
+    
+  </ul>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Student Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)=adddetail()>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">First Name</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="First Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Last Name</label>
+              <input type="text"  class="form-control" id="inputPassword4" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Write Address Here">
+          </div>
+          <div class="form-group col-md-4">
+              <label for="inputPassword4">Physics</label>
+              <input type="text"  class="form-control" id="inputPassword4" placeholder="Physics">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputPassword4">Chemistry</label>
+                <input type="text"  class="form-control" id="inputPassword4" placeholder="Chemistry">
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="inputPassword4">Math</label>
+                  <input type="text"  class="form-control" id="inputPassword4" placeholder="Math">
+                </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" value="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div name="detail" *ngIf=show>
+<table class="table table-inverse">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Physics</th>
+        <th>Chemistry</th>
+        <th>Math</th>
+        <th>Total</th>
+        <th>Percentage</th>
+        <th>Class Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of details;let i = index" (click)="clicked(i)">
+       
+        <td>{{detail.id}}</td>
+        <td>{{detail.fname}}</td>
+        <td>{{detail.lname}}</td>
+        <td>{{detail.address}}</td>
+        <td>{{detail.p}}</td>
+        <td>{{detail.m}}</td>
+        <td>{{detail.c}}</td>
+        <td>{{detail.p+detail.m+detail.c}} Out of 150</td>
+        <td>{{(detail.p+detail.m+detail.c) /150|percent}}</td>
+        <td></td>
+      </tr>
+     
+    
+    </tbody>
+  </table>
+  
+</div>
